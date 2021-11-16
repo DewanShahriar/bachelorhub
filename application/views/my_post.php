@@ -42,8 +42,8 @@
                                 </td>
                                 <td> <?php echo $value->title; ?> </td>
                                 <td> <?php echo $value->rent; ?> </td>
-                                <td> <?php echo date("d M Y h:i a", strtotime($value->insert_time)) ?> </td>
-                                <td> <?php echo $value->status; ?> </td>
+                                <td> <?php echo date("d M Y h:i", strtotime($value->insert_time)) ?> </td>
+                                <td> <?php if($value->approved == 1) echo 'Approved'; else echo 'Unapproved'; ?> </td>
                                 <td> 
                                     <a href="<?php echo base_url('details/'.$value->id)?>" class="btn btn-sm bg-green"><i class="fa fa-eye"></i></a>
                                     <a href="<?php echo base_url('site/post_delete/'.$value->id); ?>" class="btn btn-sm btn-danger" onclick = 'return confirm("Are You Sure?")'><i class="fa fa-trash"></i></a>

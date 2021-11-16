@@ -75,6 +75,7 @@ class Site extends CI_Controller {
 			if($this->input->post('floor', true)){
 				$data['search']['floor'] = $this->input->post('floor', true);
 			}
+
 		}
 
 
@@ -84,6 +85,9 @@ class Site extends CI_Controller {
  		$data['total_area']   = $this->db->count_all('area');
  		
 		$data['rent_post']  = $this->SiteModel->get_post_list($data['search']);
+		// echo "<pre>";
+		// print_r($data['rent_post']);
+		// exit;
 		$data['post_type']  = $this->db->get('post_type')->result();
 		$data['area']       = $this->db->get('area')->result();
 
@@ -511,11 +515,11 @@ class Site extends CI_Controller {
     		$approved = $data['check']->row()->approved;
     		if($approved == 1){
     			$this->db->where('id', $param)->update('rent_post', array("approved" => 0));
-    			$this->session->set_flashdata('message', 'Approved');
+    			$this->session->set_flashdata('message', 'Unapproved');
     			redirect('all_post', 'refresh');
     		} else {
     			$this->db->where('id', $param)->update('rent_post', array("approved" => 1));
-    			$this->session->set_flashdata('message', 'Unapproved');
+    			$this->session->set_flashdata('message', 'Approved');
     			redirect('all_post', 'refresh');
     		}
     	} else{
